@@ -28,60 +28,74 @@ function showSuccess(input) {
 }
 
 
+//  check required fields
+function checkRequired(inputArr) {
+
+
+}
 
 form.addEventListener('submit', function(e) {
-    e.preventDefault();
 
-    if (username.value === ''){
-        showError(username, 'Username is required');
-    } else {
-        showSuccess(username)
-    }
-
-    consol=e.log(username.value);
+    checkRequired([username, email, password, password2]);
+  
 });
 
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
+// form.addEventListener('submit', function(e) {
+//     e.preventDefault();
 
-    if (email.value === '' ){
-        showError(email, 'Email is required');
-    } else if (!isValidEmail(email.value)){
-        showError(email, 'Email is not valid');
-    } else {
-        showSuccess(email)
-    }
+//     if (username.value === ''){
+//         showError(username, 'Username is required');
+//     } else {
+//         showSuccess(username)
+//     }
 
-    consol=e.log(email.value);
-});
+//     consol=e.log(username.value);
+// });
 
 
+// form.addEventListener('submit', function(e) {
+//     e.preventDefault();
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
+//     if (email.value === '' ){
+//         showError(email, 'Email is required');
+//     } else if (!isValidEmail(email.value)){
+//         showError(email, 'Email is not valid');
+//     } else {
+//         showSuccess(email)
+//     }
 
-    if (password.value === ''){
-        showError(password, 'Password is required');
-    } else {
-        showSuccess(password)
-    }
-
-    consol=e.log(password.value);
-});
-
+//     consol=e.log(email.value);
+// });
 
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
 
-    if (password2.value === ''){
-        showError(password2, 'Password confirmation is required');
-    } else {
-        showSuccess(password2)
-    }
+// form.addEventListener('submit', function(e) {
+//     e.preventDefault();
 
-    consol=e.log(password2.value);
-});
+//     if (password.value === ''){
+//         showError(password, 'Password is required');
+//     } else {
+//         showSuccess(password)
+//     }
+
+//     consol=e.log(password.value);
+// });
+
+
+
+// form.addEventListener('submit', function(e) {
+//     e.preventDefault();
+
+//     if (password2.value === ''){
+//         showError(password2, 'Password confirmation is required');
+//     } else {
+//         showSuccess(password2)
+//     }
+
+//     consol=e.log(password2.value);
+// });
+
+
 
 
