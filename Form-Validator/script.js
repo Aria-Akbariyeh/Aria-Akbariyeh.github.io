@@ -6,9 +6,13 @@ const password2 = document.getElementById('password2');
 
 
 // check email is valid
-function isValidEmail(email) {
+function CheckEmai(input) {
     const re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-    return re.test(String(email).toLowerCase());
+    if(re.test(input.value.trim())) {
+        showSuccess(input);
+    } else {        
+        showError(input, 'Email is not valid');
+    }
 }
 
 
@@ -30,72 +34,49 @@ function showSuccess(input) {
 
 //  check required fields
 function checkRequired(inputArr) {
-
+    inputArr.forEach(function(input) {
+        if (input.value.trim() === '') {
+            showError(input, `${getFieldName(input)} is required`);
+        } else {
+            showSuccess(input);
+        }
+    });
 
 }
 
+// Get fieldname
+function getFieldName(input) {
+    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+
+// Check input length
+function checkLength(input, min, max){
+    if(input.value.length < min) {
+        showError(input, `${getFieldName(input)} must be at least ${min} characters`);
+    } else if(input.value.length > max) {
+        showError(input, `${getFieldName(input)} must be less than ${max} characters`);
+    } else {
+        showSuccess(input);
+    }
+}
+
+
+//Check passwords match
+function checkPasswordsMatch(input1, input2) {
+    if(input1.value !== input2.value) {
+        showError(input2, 'Passwords do not match');
+    }
+}   
+
 form.addEventListener('submit', function(e) {
 
+    e.preventDefault();
+
     checkRequired([username, email, password, password2]);
-  
+    checkLength(username, 3, 15);
+    checkLength(password, 6, 25);
+    CheckEmai(email);
+    checkPasswordsMatch(password, password2)
 });
-
-
-// form.addEventListener('submit', function(e) {
-//     e.preventDefault();
-
-//     if (username.value === ''){
-//         showError(username, 'Username is required');
-//     } else {
-//         showSuccess(username)
-//     }
-
-//     consol=e.log(username.value);
-// });
-
-
-// form.addEventListener('submit', function(e) {
-//     e.preventDefault();
-
-//     if (email.value === '' ){
-//         showError(email, 'Email is required');
-//     } else if (!isValidEmail(email.value)){
-//         showError(email, 'Email is not valid');
-//     } else {
-//         showSuccess(email)
-//     }
-
-//     consol=e.log(email.value);
-// });
-
-
-
-// form.addEventListener('submit', function(e) {
-//     e.preventDefault();
-
-//     if (password.value === ''){
-//         showError(password, 'Password is required');
-//     } else {
-//         showSuccess(password)
-//     }
-
-//     consol=e.log(password.value);
-// });
-
-
-
-// form.addEventListener('submit', function(e) {
-//     e.preventDefault();
-
-//     if (password2.value === ''){
-//         showError(password2, 'Password confirmation is required');
-//     } else {
-//         showSuccess(password2)
-//     }
-
-//     consol=e.log(password2.value);
-// });
-
-
-
 
